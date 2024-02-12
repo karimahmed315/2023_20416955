@@ -1,0 +1,5 @@
+Git Prompts
+show: Retrieve modifications made to a commit
+log: Shows commit history
+init: Allow git to be used in a certain file/repository
+reset: Undoes a commit
