@@ -20,19 +20,19 @@ jobs:
       uses: actions/checkout@v2
 		
     - name: Install doxygen
-    run: sudo apt-get install -y doxygen
+      run: sudo apt-get install -y doxygen
 
     # Run Doxygen on Worksheet5 Folder
     - name: Run Doxygen
-    working directory: ${{github.workspace}}/Worksheet5
-    run: doxygen
+      working directory: ${{github.workspace}}/Worksheet5
+      run: doxygen
 
     # Deploy html output from doxygen to ghpages branch
     - name: Deploy
-    uses: JamesIves/github-pages-deploy-action@v4.2.5
-    with:
-      #The branch action should deploy to
-      branch: gh-pages
-      #The folder the action should deploy
-      folder: ${{github.workspace}}/Worksheet5/html
+      uses: JamesIves/github-pages-deploy-action@v4.2.5
+      with:
+        #The branch action should deploy to
+        branch: gh-pages
+        #The folder the action should deploy
+        folder: ${{github.workspace}}/Worksheet5/html
 		
