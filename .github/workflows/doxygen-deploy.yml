@@ -18,7 +18,7 @@ jobs:
     # Predefined action to checkout copy of code
     - name: Checkout
       uses: actions/checkout@v2
-		
+      
     - name: Install doxygen
       run: sudo apt-get install -y doxygen
 
