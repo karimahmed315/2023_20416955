@@ -1,38 +1,38 @@
-name: doxygen-deploy
+# doxygen−deploy.yml
+name: doxygen−deploy
 
 on:
   push:
-    branches: [ master ] #set to default branch name
+    branches: [master] # Note: this needs to be set to your default branch name (this might be "main" rather than "master")
 
 jobs:
-  # The job that'll build Wksh5
-  deploy-worksheet5:
+  # The job that will build worksheet 5
+  deploy−worksheet5:
 
-    # define OS for virtual computer
-    runs-on: ubuntu-latest
+    # Defines the operating system for the virtual computer
+    runs−on: ubuntu−latest
 
-    # Steps to follow to complete build
-    # (list of commands to execute on VC)
+    # A list of steps to follow to complete the build
+    # (a list of commands to execute on the virtual computer)
     steps:
 
-    # Predefined action to checkout copy of code
-    - name: Checkout
-      uses: actions/checkout@v2
-      
-    - name: Install doxygen
-      run: sudo apt-get install -y doxygen
+      # This is a predefined action that checks out a copy of your code
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    # Run Doxygen on Worksheet5 Folder
-    - name: Run Doxygen
-      working directory: ${{github.workspace}}/Worksheet5
-      run: doxygen
+      - name: Install doxygen
+        run: sudo apt−get install −y doxygen
 
-    # Deploy html output from doxygen to ghpages branch
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.2.5
-      with:
-        #The branch action should deploy to
-        branch: gh-pages
-        #The folder the action should deploy
-        folder: ${{github.workspace}}/Worksheet5/html
-		
+      # Run Doxygen on Worksheet5 folder
+      - name: Run Doxygen
+        working−directory: ${{github.workspace}}/Worksheet5
+        run: doxygen
+
+      # Deploy html output from Doxygen to ghpages branches−name: Deploy
+      - name: Deploy
+        uses: JamesIves/github−pages−deploy−action@v4.2.5
+        with:
+          # The branch the action should deploy to.
+          branch: gh−pages
+          # The folder the action should deploy.
+          folder: ${{github.workspace}}/Worksheet5/html
