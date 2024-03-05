@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 project(calc)
 
-# This project contains a library
-add_library(maths SHARED adder.cpp)
-# Note: you could force CMake to always build a static/shared library:
-#add_library(maths STATIC adder.cpp)
-#add_library(maths SHARED adder.cpp)
 
 if(BUILD_SHARED_LIBS)
   # if static libs are compiled we need
@@ -16,11 +11,6 @@ if(BUILD_SHARED_LIBS)
   add_definitions(-Dmaths_STATIC)
 endif()
 
-# It also contains an executable
-add_executable(calc calc.cpp)
-
-# The executable uses the library
-target_link_libraries(calc maths)
 
 
 if(WIN32)
@@ -31,9 +21,9 @@ endif()
 
 include(CPack)
 
-add_library(maths maths.cpp)
+add_library(maths adder.cpp)
 
-add_executable(calcwksh5 calc.cpp)
+add_executable(calc calc.cpp)
 target_link_libraries(calc maths)
 
 install(TARGETS calc maths
