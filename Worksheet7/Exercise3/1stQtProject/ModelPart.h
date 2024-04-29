@@ -1,3 +1,4 @@
+
 /**     @file ModelPart.h
   *
   *     EEEE2076 - Software Engineering & VR Project
@@ -13,7 +14,12 @@
 #include <QString>
 #include <QList>
 #include <QVariant>
-#include <QFileDialog>
+#include <QColorDialog>
+#include <vtkSmartPointer.h>
+#include <vtkMapper.h>
+#include <vtkActor.h>
+#include <vtkSTLReader.h>
+#include <vtkColor.h>
 
 /* VTK headers - will be needed when VTK used in next worksheet,
  * commented out for now
@@ -22,11 +28,6 @@
  * commented out below - this is because you haven't yet installed
  * the VTK library which is needed.
  */
-//#include <vtkSmartPointer.h>
-//#include <vtkMapper.h>
-//#include <vtkActor.h>
-//#include <vtkSTLReader.h>
-//#include <vtkColor.h>
 
 class ModelPart {
 public:
@@ -96,37 +97,62 @@ public:
     /** Set colour
       * (0-255 RGB values as ints)
       */
-    void setColour(const unsigned char R, const unsigned char G, const unsigned char B);
+    void setColour(QColor Clr);
 
-    unsigned char getColourR();
-    unsigned char getColourG();
-    unsigned char getColourB();
 
     /** Set visible flag
       * @param isVisible sets visible/non-visible
       */
-    void setVisible(bool isVisible);
+    void setVisible(bool isvisible);
 
     /** Get visible flag
       * @return visible flag as boolean 
       */
-    bool visible();
+    bool visible() const;
+
 	
 	/** Load STL file
       * @param fileName
       */
     void loadSTL(QString fileName);
 
+    /**
+     * Set the name of the ModelPart.
+    * @param name is the new name for the ModelPart.
+    */
+    void setName(QString name);
+
+    /**
+     * Get the color of the ModelPart.
+     * @return the color of the ModelPart as a QColor object.
+     */
+    QColor get_Color(void) const;
+
+    /**
+     * Get the name of the ModelPart.
+     * @return the name of the ModelPart as a QString.
+     */
+    const QString get_Name(void);
+
+    /**
+     * Get the visibility status of the ModelPart.
+     * @return the visibility status of the ModelPart as a boolean. True if the ModelPart is visible, false otherwise.
+     */
+    bool get_Visibility(void) const;
+
+
+
     /** Return actor
       * @return pointer to default actor for GUI rendering
       */
-    //vtkSmartPointer<vtkActor> getActor();
+    vtkSmartPointer<vtkActor> getActor();
 
+    
     /** Return new actor for use in VR
       * @return pointer to new actor
       */
     //vtkActor* getNewActor();
-
+    
 private:
     QList<ModelPart*>                           m_childItems;       /**< List (array) of child items */
     QList<QVariant>                             m_itemData;         /**< List (array of column data for item */
@@ -136,14 +162,14 @@ private:
      * want to add you own.
      */
     bool                                        isVisible;          /**< True/false to indicate if should be visible in model rendering */
-	
+    QColor Colour = Qt::GlobalColor::red;
+    QString Name;
 	/* These are vtk properties that will be used to load/render a model of this part,
 	 * commented out for now but will be used later
 	 */
-	//vtkSmartPointer<vtkSTLReader>               file;               /**< Datafile from which part loaded */
-    //vtkSmartPointer<vtkMapper>                  mapper;             /**< Mapper for rendering */
-    //vtkSmartPointer<vtkActor>                   actor;              /**< Actor for rendering */
-    //vtkColor3<unsigned char>                    colour;             /**< User defineable colour */
+	vtkSmartPointer<vtkSTLReader>               file;               /**< Datafile from which part loaded */
+    vtkSmartPointer<vtkMapper>                  mapper;             /**< Mapper for rendering */
+    vtkSmartPointer<vtkActor>                   actor;              /**< Actor for rendering */
 };  
 
 

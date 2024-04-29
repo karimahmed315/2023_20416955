@@ -1,3 +1,4 @@
+
 /**     @file ModelPartList.h
   *
   *     EEEE2076 - Software Engineering & VR Project
@@ -18,7 +19,6 @@
 #include <QVariant>
 #include <QString>
 #include <QList>
-#include <QFileDialog>
 
 class ModelPart;
 
@@ -95,6 +95,7 @@ public:
     /**
       */
     QModelIndex appendChild( QModelIndex& parent, const QList<QVariant>& data );
+
 
 
 private:

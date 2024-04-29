@@ -84,12 +84,10 @@ install(TARGETS 1stQtProject
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(1stQtProject)
 endif()
-################################### This needs adding #######################################
-#********************************************************************************************
+
 # Copy across Open VR bindings that map controllers
 # The program will expect to find these in the build dir when it runs
 add_custom_target( VRBindings )
 add_custom_command(	TARGET VRBindings PRE_BUILD
 COMMAND ${CMAKE_COMMAND} -E
               copy_directory ${CMAKE_SOURCE_DIR}/ vrbindings ${CMAKE_BINARY_DIR}/ )
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

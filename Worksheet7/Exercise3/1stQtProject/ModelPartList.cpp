@@ -84,7 +84,6 @@ QModelIndex ModelPartList::index(int row, int column, const QModelIndex& parent)
     return QModelIndex();
 }
 
-
 QModelIndex ModelPartList::parent( const QModelIndex& index ) const {
     if (!index.isValid())
         return QModelIndex();
@@ -93,6 +92,8 @@ QModelIndex ModelPartList::parent( const QModelIndex& index ) const {
     ModelPart* parentItem = childItem->parentItem();
 
     if( parentItem == rootItem )
+        return QModelIndex();
+    if (parentItem == nullptr || parentItem == rootItem)
         return QModelIndex();
 
     return createIndex( parentItem->row(), 0, parentItem );
@@ -143,4 +144,3 @@ QModelIndex ModelPartList::appendChild(QModelIndex& parent, const QList<QVariant
 
     return child;
 }
-
